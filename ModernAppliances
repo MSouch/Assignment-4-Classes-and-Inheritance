@@ -1,0 +1,144 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+namespace ModernAppliances
+{
+    public class Appliance
+    {
+        public string ItemNumber { get; set; }
+        public string Brand { get; set; }
+        public int Quantity { get; set; }
+        public int Wattage { get; set; }
+        public string Color { get; set; }
+        public decimal Price { get; set; }
+
+        public Appliance(string itemNumber, string brand, int quantity, int wattage, string color, decimal price)
+        {
+            ItemNumber = itemNumber;
+            Brand = brand;
+            Quantity = quantity;
+            Wattage = wattage;
+            Color = color;
+            Price = price;
+        }
+
+        public override string ToString()
+        {
+            return $"Item Number: {ItemNumber}\nBrand: {Brand}\nQuantity: {Quantity}\nWattage: {Wattage}\nColor: {Color}\nPrice: {Price:C}";
+        }
+    }
+
+    public class Refrigerator : Appliance
+    {
+        public int NumberOfDoors { get; set; }
+        public int Height { get; set; }
+        public int Width { get; set; }
+
+        public Refrigerator(string itemNumber, string brand, int quantity, int wattage, string color, decimal price, int doors, int height, int width)
+            : base(itemNumber, brand, quantity, wattage, color, price)
+        {
+            NumberOfDoors = doors;
+            Height = height;
+            Width = width;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + $"\nNumber of Doors: {NumberOfDoors}\nHeight: {Height} inches\nWidth: {Width} inches";
+        }
+    }
+
+    //  implementation for Vacuum, Microwave, and Dishwasher classes
+
+    class Program
+    {
+        static List<Appliance> appliances = new List<Appliance>();
+
+        static void Main(string[] args)
+        {
+            LoadAppliancesFromFile("appliances.txt");
+
+            // Test methods here
+            DisplayRefrigerators();
+
+            //Logic here
+
+            // Save the updated appliances list back to the appliances.txt file
+            SaveAppliancesToFile("appliances.txt");
+        }
+
+        static void LoadAppliancesFromFile(string filePath)
+        {
+            try
+            {
+                string[] lines = File.ReadAllLines(filePath);
+
+                foreach (string line in lines)
+                {
+                    string[] data = line.Split(';');
+
+                    switch (data[0][0])
+                    {
+                        case '1':
+                            appliances.Add(new Refrigerator(data[0], data[1], int.Parse(data[2]), int.Parse(data[3]),
+                                data[4], decimal.Parse(data[5]), int.Parse(data[6]), int.Parse(data[7]), int.Parse(data[8])));
+                            break;
+                            
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading appliances: {ex.Message}");
+            }
+        }
+
+        static void SaveAppliancesToFile(string filePath)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    foreach (Appliance appliance in appliances)
+                    {
+                        writer.WriteLine($"{appliance.ItemNumber};{appliance.Brand};{appliance.Quantity};" +
+                            $"{appliance.Wattage};{appliance.Color};{appliance.Price};" + GetApplianceSpecificData(appliance));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error saving appliances: {ex.Message}");
+            }
+        }
+
+        // Implement similar methods for other functionalities here I assume
+
+        static void DisplayRefrigerators()
+        {
+            foreach (Appliance appliance in appliances)
+            {
+                if (appliance is Refrigerator)
+                {
+                    Console.WriteLine(appliance);
+                    Console.WriteLine("------------");
+                }
+            }
+        }
+
+        
+        static string GetApplianceSpecificData(Appliance appliance)
+        {
+            if (appliance is Refrigerator)
+            {
+                Refrigerator refrigerator = (Refrigerator)appliance;
+                return $"{refrigerator.NumberOfDoors};{refrigerator.Height};{refrigerator.Width}";
+            }
+           
+
+            return string.Empty;
+        }
+    }
+}
