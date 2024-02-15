@@ -100,7 +100,7 @@ namespace ModernAppliances
                     // Down cast Appliance to Refrigerator
                     Refrigerator refrigerator = (Refrigerator)appliance;
                     // Test user entered 0 or refrigerator doors equals what user entered.
-                    if (nDoors == 0 || refrigerator.Doors == nDoors)
+                    if (nDoors == 0 || refrigerator.NumDoors == nDoors)
                     {
                         // Add current appliance in list to found list
                         appliancesQueried.Add(refrigerator);
@@ -213,7 +213,7 @@ namespace ModernAppliances
                     // Down cast current Appliance to Vacuum object
                     Vacuum vacuum = (Vacuum) a;
                     // Test grade is "Any" or grade is equal to current vacuum grade and voltage is 0 or voltage is equal to current vacuum voltage
-                    if ( (grade == "Any" || vacuum.Grade == grade) && (voltage == 0 || vacuum.BatteryVoltage == voltage))
+                    if ( (grade == "Any" || vacuum.Grade == grade) && (voltage == 0 || vacuum.Voltage == voltage))
                     {
                         // Add current appliance in list to found list
                         found.Add(a);
@@ -369,7 +369,7 @@ namespace ModernAppliances
                     // Down cast current Appliance to Dishwasher
                     Dishwasher dishwasher = (Dishwasher) a;
                     // Test sound rating is "Any" or equals soundrating for current dishwasher
-                    if (soundRating == "Any" || dishwasher.SoundRating == soundRating)
+                    if (soundRating == "Any" || dishwasher.SoundRatings == soundRating)
                     {
                         // Add current appliance in list to found list
                         found.Add(a);

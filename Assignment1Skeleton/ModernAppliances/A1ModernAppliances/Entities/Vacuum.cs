@@ -7,69 +7,23 @@ namespace ModernAppliances.Entities
     /// </summary>
     internal class Vacuum : Appliance
     {
-        /// <summary>
-        /// Field for vacuum grade
-        /// </summary>
-        private readonly string _grade;
-        /// <summary>
-        /// Field for vacuum battery voltage
-        /// </summary>
-        private readonly short _batteryVoltage;
+        /* Vacuums have an Item Number, Brand, Quantity, Wattage, Color, Price, Grade and Battery Voltage.  */
 
-        /// <summary>
-        /// Property for vacuum grade
-        /// </summary>
-        public string Grade
+        public string Grade { get; set; }
+        public double Voltage { get; set; }
+
+        public Vacuum(int itemnumber, string brand, int quantity, double wattage, string color, double price, string grade, double voltage) : base(brand, color, price, wattage, itemnumber, quantity)
         {
-            get { return _grade; }
+            // Constructor
+            Grade = grade;
+            Voltage = voltage;
         }
 
-        /// <summary>
-        /// Property for vacuum battery voltage
-        /// </summary>
-        public short BatteryVoltage
-        {
-            get { return _batteryVoltage; }
-        }
-
-        /// <summary>
-        /// Constructs Vacuum object
-        /// </summary>
-        /// <param name="itemNumber">Item number</param>
-        /// <param name="brand">Brand</param>
-        /// <param name="quantity">Quantity</param>
-        /// <param name="wattage">Wattage</param>
-        /// <param name="color">Color</param>
-        /// <param name="price">Price</param>
-        /// <param name="grade">Vacuum grade</param>
-        /// <param name="batteryVoltage">Battery voltage</param>
-        public Vacuum(long itemNumber, string brand, int quantity, decimal wattage, string color, decimal price, string grade, short batteryVoltage) : base(itemNumber, brand, quantity, wattage, color, price)
-        {
-            this._grade = grade;
-            this._batteryVoltage = batteryVoltage;
-        }
-
-        public override string FormatForFile()
-        {
-            string commonFormatted = base.FormatForFile();
-            string formatted = string.Join(';', commonFormatted, Grade, BatteryVoltage);
-
-            return formatted;
-        }
-
+        //Methods
         public override string ToString()
         {
-            string display =
-                string.Format("Item Number: {0}", ItemNumber) + "\n" +
-                string.Format("Brand: {0}", Brand) + "\n" +
-                string.Format("Quantity: {0}", Quantity) + "\n" +
-                string.Format("Wattage: {0}", Wattage) + "\n" +
-                string.Format("Color: {0}", Color) + "\n" +
-                string.Format("Price: {0}", Price) + "\n" +
-                string.Format("Grade: {0}", Grade) + "\n" +
-                string.Format("Battery Voltage: {0}", BatteryVoltage);
-
-            return display;
+            return base.ToString() + $"\nGrade: {Grade}\nVoltage: {Voltage}V";
         }
+    
     }
 }

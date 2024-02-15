@@ -256,12 +256,12 @@ namespace ModernAppliances
             if (parts.Length != 9)
                 return null;
 
-            long itemNumber = long.Parse(parts[0]);
+            int itemNumber = int.Parse(parts[0]);
             string brand = parts[1];
             int quantity = int.Parse(parts[2]);
-            decimal wattage = decimal.Parse(parts[3]);
+            double wattage = double.Parse(parts[3]);
             string color = parts[4];
-            decimal price = decimal.Parse(parts[5]);
+            double price = double.Parse(parts[5]);
             short doors = short.Parse(parts[6]);
             int width = int.Parse(parts[7]);
             int height = int.Parse(parts[8]);
@@ -281,12 +281,12 @@ namespace ModernAppliances
             if (parts.Length != 8)
                 return null;
 
-            long itemNumber = long.Parse(parts[0]);
+            int itemNumber = int.Parse(parts[0]);
             string brand = parts[1];
             int quantity = int.Parse(parts[2]);
-            decimal wattage = decimal.Parse(parts[3]);
+            double wattage = double.Parse(parts[3]);
             string color = parts[4];
-            decimal price = decimal.Parse(parts[5]);
+            double price = double.Parse(parts[5]);
             string grade = parts[6];
             short batteryVoltage = short.Parse(parts[7]);
 
@@ -305,14 +305,14 @@ namespace ModernAppliances
             if (parts.Length != 8)
                 return null;
 
-            long itemNumber = long.Parse(parts[0]);
+            int itemNumber = int.Parse(parts[0]);
             string brand = parts[1];
             int quantity = int.Parse(parts[2]);
-            decimal wattage = decimal.Parse(parts[3]);
+            double wattage = double.Parse(parts[3]);
             string color = parts[4];
-            decimal price = decimal.Parse(parts[5]);
+            double price = double.Parse(parts[5]);
             float capacity = float.Parse(parts[6]);
-            char roomType = char.Parse(parts[7]);
+            string roomType = parts[7];
 
             Microwave microwave = new Microwave(itemNumber, brand, quantity, wattage, color, price, capacity, roomType);
 
@@ -329,12 +329,12 @@ namespace ModernAppliances
             if (parts.Length != 8)
                 return null;
 
-            long itemNumber = long.Parse(parts[0]);
+            int itemNumber = int.Parse(parts[0]);
             string brand = parts[1];
             int quantity = int.Parse(parts[2]);
-            decimal wattage = decimal.Parse(parts[3]);
+            double wattage = double.Parse(parts[3]);
             string color = parts[4];
-            decimal price = decimal.Parse(parts[5]);
+            double price = double.Parse(parts[5]);
             string feature = parts[6];
             string soundRating = parts[7];
 

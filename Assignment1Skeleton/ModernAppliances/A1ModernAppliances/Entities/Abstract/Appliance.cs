@@ -5,6 +5,60 @@
     /// </summary>
     internal abstract class Appliance
     {
+        /* 
+         •	Refrigerators have an Item Number, Brand, Quantity, Wattage, Color, Price,  || Number of Doors, Height and Width (in inches). 
+         •	Vacuums have an Item Number, Brand, Quantity, Wattage, Color, Price,        || Grade and Battery Voltage. 
+         •	Microwaves have an Item Number, Brand, Quantity, Wattage, Color, Price,     || Capacity and Room Type. 
+         •	Dishwashers have an Item Number, Brand, Quantity, Wattage, Color, Price,    || Sound Rating, and Feature. 
+         */
+
+        public long ItemNumber { get; set; }
+        public string Brand { get; set; }
+        public int Quantity { get; set; }
+        public double Wattage { get; set; }
+        public string Color { get; set; }
+        public double Price { get; set; }
+        public bool IsAvailible
+        {
+            get
+            {
+                bool IsAvailible = Quantity > 0;
+                return IsAvailible;
+            }
+        }
+
+
+
+
+        public Appliance(string brand, string color, double price, double wattage, int itemnumber, int quantity)
+        {
+            Brand = brand;
+            Color = color;
+            Price = price;
+            Wattage = wattage;
+            ItemNumber = itemnumber;
+            Quantity = quantity;
+        }
+
+        // Method
+        public override string ToString()
+        {
+            return $"Item Number: {ItemNumber}\nBrand: {Brand}\nQuantity: {Quantity}\nWattage: {Wattage}\nColor: {Color}\nPrice: {Price:C}";
+        }
+
+        public void PrintApplianceList(List<Appliance> ListApp)
+        {
+            foreach (Appliance appliance in ListApp)
+            {
+                Console.WriteLine($"Brand: {appliance.Brand}");
+                Console.WriteLine($"Color: {appliance.Color}");
+                Console.WriteLine($"Price: {appliance.Price}");
+                Console.WriteLine($"Wattage: {appliance.Wattage}");
+                Console.WriteLine($"ItemNumber: {appliance.ItemNumber}");
+                Console.WriteLine($"Quantity: {appliance.Quantity}");
+            }
+        }
+
         /// <summary>
         /// Types of appliances
         /// </summary>
@@ -16,14 +70,6 @@
             Microwave = 3,
             Dishwasher = 4
         }
-
-        private readonly long _itemNumber;
-        private readonly string _brand;
-        private int _quantity;
-        private readonly decimal _wattage;
-        private readonly string _color;
-        private readonly decimal _price;
-
         public ApplianceTypes Type
         {
             get
@@ -31,111 +77,13 @@
                 return DetermineApplianceTypeFromItemNumber(_itemNumber);
             }
         }
+        private readonly int _itemNumber;
+        private readonly string _brand;
+        private int _quantity;
+        private readonly double _wattage;
+        private readonly string _color;
+        private readonly double _price;
 
-        /// <summary>
-        /// Item number
-        /// </summary>
-        public long ItemNumber
-        {
-            get
-            {
-                return _itemNumber;
-            }
-        }
-
-        /// <summary>
-        /// Brand of appliance
-        /// </summary>
-        public string Brand
-        {
-            get { return _brand; }
-        }
-
-        /// <summary>
-        /// Number of appliances
-        /// </summary>
-        public int Quantity
-        {
-            get { return _quantity; }
-        }
-
-        /// <summary>
-        /// Wattage for appliance
-        /// </summary>
-        public decimal Wattage
-        {
-            get { return _wattage; }
-        }
-
-        /// <summary>
-        /// Color of appliance
-        /// </summary>
-        public string Color
-        {
-            get { return _color;  }
-        }
-
-        /// <summary>
-        /// Price for appliance
-        /// </summary>
-        public decimal Price
-        {
-            get { return _price; }
-        }
-
-        /// <summary>
-        /// Is there appliance(s) available
-        /// </summary>
-        public bool IsAvailable
-        {
-            get
-            {
-                bool isAvailable = Quantity > 0 ? true : false;
-                return isAvailable;
-            }
-        }
-
-        /// <summary>
-        /// Constructor for appliance
-        /// </summary>
-        /// <param name="itemNumber">Item number</param>
-        /// <param name="brand">Brand</param>
-        /// <param name="quantity">Quantity</param>
-        /// <param name="wattage">Wattage</param>
-        /// <param name="color">Color</param>
-        /// <param name="price">Price</param>
-        protected Appliance(long itemNumber, string brand, int quantity, decimal wattage, string color, decimal price)
-        {
-            this._itemNumber = itemNumber;
-            this._brand = brand;
-            this._quantity = quantity;
-            this._wattage = wattage;
-            this._color = color;
-            this._price = price;
-        }
-
-        /// <summary>
-        /// Checkout appliance
-        /// </summary>
-        public void Checkout()
-        {
-            this._quantity = this._quantity - 1;
-        }
-
-        /// <summary>
-        /// Formats appliance to be stored in file
-        /// </summary>
-        /// <returns></returns>
-        public virtual string FormatForFile()
-        {
-            return string.Join(';', ItemNumber, Brand, Quantity, Wattage, Color, Price);
-        }
-
-        /// <summary>
-        /// Determines appliance type from item number
-        /// </summary>
-        /// <param name="itemNumber">Item number</param>
-        /// <returns>Appliance type</returns>
         public static ApplianceTypes DetermineApplianceTypeFromItemNumber(long itemNumber)
         {
             string firstDigitStr = itemNumber.ToString().Substring(0, 1);
