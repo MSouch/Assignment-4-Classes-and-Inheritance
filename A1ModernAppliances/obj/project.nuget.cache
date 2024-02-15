@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "4eeAzqF7VHa+syoWMJ2MiY6RDefzex4GwUkiLpdnI0r1v+0lR6PXs/5Idk99jT09HdC/r23VGOIBPsMKbNF1HQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\legen\\source\\repos\\Assignment-4-Classes-and-Inheritance\\Assignment1Skeleton\\ModernAppliances\\A1ModernAppliances\\ModernAppliances.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\legen\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.26\\microsoft.windowsdesktop.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\legen\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.26\\microsoft.netcore.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\legen\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.26\\microsoft.aspnetcore.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\legen\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.26\\microsoft.netcore.app.host.win-x64.6.0.26.nupkg.sha512"
+  ],
+  "logs": []
+}
